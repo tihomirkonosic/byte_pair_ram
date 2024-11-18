@@ -1,5 +1,7 @@
 #include <iostream>
 #include "../include/parser.h"
+#include "../include/Kmer.h"
+#include "../include/byte_pair_encoder.h"
 
 void Help() {
     std::cout <<
@@ -28,4 +30,9 @@ int main(int argc, char * argv[]) {
     if (targets.empty()) {
         return 1;
     }
+
+    BytePairEncoder encoder;
+    std::vector<Kmer> kmers = encoder.Encode(targets.front(), 20);
+
+    std::cout << "Kmers: " << kmers.size() << std::endl;
 }
